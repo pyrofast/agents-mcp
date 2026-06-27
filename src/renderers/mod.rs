@@ -14,7 +14,7 @@ pub mod vscode;
 pub mod windsurf;
 
 pub trait AgentRenderer: Send + Sync {
-    fn name(&self) -> &str;
+    fn name(&self) -> &'static str;
     fn config_path(&self, project_root: &Path) -> PathBuf;
 
     fn render(&self, config: &UniversalConfig) -> Value;

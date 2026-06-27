@@ -5,7 +5,7 @@ use std::thread;
 use std::time::Duration;
 
 use anyhow::{Context, Result};
-use notify::{Config, EventKind, PollWatcher, RecursiveMode, Watcher};
+use notify::{EventKind, RecursiveMode, Watcher};
 
 use crate::config::read_universal_config;
 use crate::detect::all_renderers;
@@ -20,7 +20,7 @@ pub fn run(project_root: &Path) -> Result<()> {
     fs::write(&pid_path, format!("{}", std::process::id()))?;
 
     let (tx, rx) = mpsc::channel();
-    let mut watcher = PollWatcher::new(tx, Config::default())
+    let mut watcher = notify::recommended_watcher(tx)
         .context("Failed to create file watcher")?;
     watcher
         .watch(&source, RecursiveMode::NonRecursive)
