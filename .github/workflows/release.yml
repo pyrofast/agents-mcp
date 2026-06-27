@@ -49,6 +49,6 @@ jobs:
       - name: Upload to release
         uses: softprops/action-gh-release@v2
         with:
-          files: target/${{ matrix.target }}/release/agents-mcp${{ matrix.ext }}
-          name: agents-mcp ${{ github.ref_name }}
+          files: target/${{ matrix.target }}/release/mcplink${{ matrix.ext }}
+          name: mcplink ${{ github.ref_name }}
           tag_name: ${{ github.ref_name }}
