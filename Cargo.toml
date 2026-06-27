@@ -3,7 +3,7 @@ name = "mcplink"
 version = "0.1.1"
 edition = "2021"
 description = "Universal MCP config sync daemon"
-repository = "https://github.com/pyrofast/agents-mcp"
+repository = "https://github.com/pyrofast/mcplink"
 
 [dependencies]
 clap = { version = "4", features = ["derive"] }

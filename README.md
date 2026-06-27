@@ -59,7 +59,7 @@ Create `.agents/mcp.json` in your project root:
 
 ## Install
 
-Download the binary for your platform from [Releases](https://github.com/pyrofast/agents-mcp/releases), run it once, done.
+Download the binary for your platform from [Releases](https://github.com/pyrofast/mcplink/releases), run it once, done.
 
 ## Build from source
 
