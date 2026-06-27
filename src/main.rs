@@ -6,8 +6,6 @@ mod renderers;
 mod service;
 mod sync;
 
-use std::path::Path;
-
 use anyhow::Result;
 use clap::Parser;
 use cli::{Cli, Command};

@@ -3,17 +3,12 @@ use std::path::PathBuf;
 
 use anyhow::{Context, Result};
 use service_manager::{
-    ServiceInstallCtx, ServiceLabel, ServiceManager, ServiceStartCtx, ServiceStopCtx,
-    ServiceUninstallCtx,
+    native_service_manager, ServiceInstallCtx, ServiceLabel, ServiceManager, ServiceStartCtx,
+    ServiceStopCtx, ServiceUninstallCtx,
 };
-use std::env::current_exe;
 
 fn label() -> ServiceLabel {
     "dev.agents-mcp".parse().expect("valid service label")
-}
-
-fn manager() -> Result<Box<dyn ServiceManager>> {
-    service_manager::native().context("Failed to create service manager")
 }
 
 fn state_dir() -> PathBuf {
@@ -27,16 +22,20 @@ fn installed_flag() -> PathBuf {
 }
 
 pub fn install() -> Result<()> {
-    let manager = manager()?;
-    let exe = current_exe().context("Failed to get current exe path")?;
+    let manager = native_service_manager();
+
+    let exe = std::env::current_exe().context("Failed to get current exe path")?;
 
     manager
         .install(ServiceInstallCtx {
             label: label(),
             program: exe,
             args: vec!["--daemon".into()],
-            autostart: true,
             contents: None,
+            username: None,
+            working_directory: None,
+            environment: None,
+            autostart: true,
         })
         .context("Failed to install service")?;
 
@@ -46,13 +45,16 @@ pub fn install() -> Result<()> {
         })
         .context("Failed to start service")?;
 
+    if let Some(parent) = installed_flag().parent() {
+        fs::create_dir_all(parent)?;
+    }
     fs::write(installed_flag(), "")?;
 
     Ok(())
 }
 
 pub fn start() -> Result<()> {
-    let manager = manager()?;
+    let manager = native_service_manager();
     manager
         .start(ServiceStartCtx {
             label: label(),
@@ -61,7 +63,7 @@ pub fn start() -> Result<()> {
 }
 
 pub fn stop() -> Result<()> {
-    let manager = manager()?;
+    let manager = native_service_manager();
     manager
         .stop(ServiceStopCtx {
             label: label(),
@@ -70,7 +72,7 @@ pub fn stop() -> Result<()> {
 }
 
 pub fn uninstall() -> Result<()> {
-    let manager = manager()?;
+    let manager = native_service_manager();
     let _ = manager.stop(ServiceStopCtx {
         label: label(),
     });
