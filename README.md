@@ -59,7 +59,33 @@ Create `.agents/mcp.json` in your project root:
 
 ## Install
 
-Download the binary for your platform from [Releases](https://github.com/pyrofast/mcplink/releases), run it once, done.
+Download the binary for your platform and run it once — it installs itself as a system service.
+
+### Linux (x86_64)
+```bash
+curl -L https://github.com/pyrofast/mcplink/releases/download/v0.1.1/mcplink-x86_64-unknown-linux-gnu -o mcplink
+chmod +x mcplink && ./mcplink
+```
+
+### macOS (Intel)
+```bash
+curl -L https://github.com/pyrofast/mcplink/releases/download/v0.1.1/mcplink-x86_64-apple-darwin -o mcplink
+chmod +x mcplink && ./mcplink
+```
+
+### macOS (Apple Silicon)
+```bash
+curl -L https://github.com/pyrofast/mcplink/releases/download/v0.1.1/mcplink-aarch64-apple-darwin -o mcplink
+chmod +x mcplink && ./mcplink
+```
+
+### Windows (x86_64 PowerShell)
+```powershell
+curl -L https://github.com/pyrofast/mcplink/releases/download/v0.1.1/mcplink-x86_64-pc-windows-msvc.exe -o mcplink.exe
+.\mcplink.exe
+```
+
+Or grab the right binary from [Releases](https://github.com/pyrofast/mcplink/releases).
 
 ## Build from source
 
