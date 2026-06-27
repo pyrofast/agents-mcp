@@ -18,7 +18,7 @@ Every AI agent stores MCP config in its own path with its own schema. Add a serv
 | Claude Code | `.mcp.json` | `mcpServers` |
 | Copilot | `.github/mcp.json` | `mcpServers` |
 | VS Code | `.vscode/mcp.json` | `servers` |
-| Windsurf | `.windsurf/mcp.json` | `mcpServers` |
+| Devin Desktop (formerly Windsurf) | `.windsurf/mcp.json` | `mcpServers` |
 | OpenCode | `opencode.json` | `mcp` |
 
 ## Usage
@@ -30,6 +30,8 @@ mcplink
 # Commands
 mcplink status    # Show daemon status and synced agents
 mcplink sync      # Force sync now
+mcplink agents list  # Show agents installed on this OS
+mcplink als          # Alias for agents list
 mcplink stop      # Stop the daemon
 mcplink uninstall # Remove service
 ```

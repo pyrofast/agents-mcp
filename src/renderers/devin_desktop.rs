@@ -5,11 +5,11 @@ use serde_json::{Map, Value};
 use super::AgentRenderer;
 use crate::config::UniversalConfig;
 
-pub struct WindsurfRenderer;
+pub struct DevinDesktopRenderer;
 
-impl AgentRenderer for WindsurfRenderer {
+impl AgentRenderer for DevinDesktopRenderer {
     fn name(&self) -> &'static str {
-        "windsurf"
+        "devin-desktop"
     }
 
     fn config_path(&self, project_root: &Path) -> PathBuf {

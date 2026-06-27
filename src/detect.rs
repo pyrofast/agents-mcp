@@ -5,7 +5,7 @@ use crate::renderers::copilot::CopilotRenderer;
 use crate::renderers::cursor::CursorRenderer;
 use crate::renderers::opencode::OpenCodeRenderer;
 use crate::renderers::vscode::VSCodeRenderer;
-use crate::renderers::windsurf::WindsurfRenderer;
+use crate::renderers::devin_desktop::DevinDesktopRenderer;
 use crate::renderers::AgentRenderer;
 
 pub struct AgentInfo {
@@ -19,7 +19,7 @@ pub fn all_renderers() -> Vec<Box<dyn AgentRenderer>> {
         Box::new(ClaudeRenderer),
         Box::new(CopilotRenderer),
         Box::new(VSCodeRenderer),
-        Box::new(WindsurfRenderer),
+        Box::new(DevinDesktopRenderer),
         Box::new(OpenCodeRenderer),
     ]
 }

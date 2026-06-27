@@ -11,7 +11,7 @@ pub mod copilot;
 pub mod cursor;
 pub mod opencode;
 pub mod vscode;
-pub mod windsurf;
+pub mod devin_desktop;
 
 pub trait AgentRenderer: Send + Sync {
     fn name(&self) -> &'static str;
