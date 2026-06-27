@@ -54,4 +54,6 @@ jobs:
           files: mcplink-${{ matrix.target }}${{ matrix.ext }}
           name: mcplink ${{ github.ref_name }}
           tag_name: ${{ github.ref_name }}
+          draft: false
+          make_latest: true
           fail_on_unmatched_files: true
