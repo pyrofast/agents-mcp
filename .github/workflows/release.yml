@@ -5,6 +5,9 @@ on:
     branches: [main]
     tags: ['v*']
 
+permissions:
+  contents: write
+
 env:
   CARGO_TERM_COLOR: always
 
@@ -43,14 +46,9 @@ jobs:
         with:
           target: ${{ matrix.target }}
       - run: cargo build --release --target ${{ matrix.target }}
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: mcplink-${{ matrix.target }}
-          path: target/${{ matrix.target }}/release/mcplink${{ matrix.ext }}
       - name: Upload to release
-        if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: target/${{ matrix.target }}/release/mcplink${{ matrix.ext }}
-          generate_release_notes: true
+          files: target/${{ matrix.target }}/release/agents-mcp${{ matrix.ext }}
+          name: agents-mcp ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
